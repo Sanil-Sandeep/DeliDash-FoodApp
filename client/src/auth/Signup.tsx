@@ -1,16 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
+import { SignupInputState } from "@/schema/userSchema";
 import { Loader2, LockKeyhole, Mail, PhoneCall, User } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Link } from "react-router-dom";
 
-type SignupInputState = {
-    fullname:string;
-    email:string;
-    password:string;
-    contact:string;
-}
 
 const Signup = () => {
 
