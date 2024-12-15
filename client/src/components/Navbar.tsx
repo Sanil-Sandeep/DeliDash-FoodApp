@@ -2,11 +2,12 @@ import { Link } from "react-router-dom"
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "./ui/menubar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { Moon, ShoppingCart, Sun } from "lucide-react";
+import { Loader2, Moon, ShoppingCart, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Navbar = () => {
   const admin = true;
+  const loading = false;
   return (
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between h-14">
@@ -72,6 +73,23 @@ const Navbar = () => {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </div>
+          <div>
+            {
+              loading ? (
+                <Button className="bg-orange hover:bg-hoverOrange">
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
+                  Please wait
+                </Button>
+              ) : (
+                <Button className="bg-orange hover:bg-hoverOrange">Logout</Button>
+              )
+            }
+            
+          </div>
+        </div>
+        <div>
+          {/* Mobile responsive */}
+          
         </div>
       </div>
     </div>
