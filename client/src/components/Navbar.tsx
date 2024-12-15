@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Menubar, MenubarContent, MenubarTrigger } from "./ui/menubar";
+import { Menubar, MenubarContent, MenubarMenu, MenubarTrigger } from "./ui/menubar";
 
 const Navbar = () => {
   const admin = true;
@@ -17,17 +17,19 @@ const Navbar = () => {
           </div>
           {
             admin && (
-                        <Menubar>
-                          <MenubarTrigger>
-                            Dashboard
-                          </MenubarTrigger>
-                          <MenubarContent>
-                            <Link to="/admin/restaurant">Restaurant</Link>
-                            <Link to="/admin/menu">Menu</Link>
-                            <Link to="/admin/orders">Order</Link>
-                          </MenubarContent>
-                        </Menubar>
-                    )
+              <Menubar>
+                <MenubarMenu>
+                  <MenubarTrigger>
+                    Dashboard
+                  </MenubarTrigger>
+                  <MenubarContent>
+                    <Link to="/admin/restaurant">Restaurant</Link>
+                    <Link to="/admin/menu">Menu</Link>
+                    <Link to="/admin/orders">Order</Link>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
+            )
           }
         </div>
       </div>
