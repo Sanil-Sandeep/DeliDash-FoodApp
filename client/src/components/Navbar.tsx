@@ -2,8 +2,11 @@ import { Link } from "react-router-dom"
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "./ui/menubar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { Loader2, Moon, ShoppingCart, Sun } from "lucide-react";
+import { Loader2, Menu, Moon, ShoppingCart, Sun } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
 
 const Navbar = () => {
   const admin = true;
@@ -87,13 +90,53 @@ const Navbar = () => {
             
           </div>
         </div>
-        <div>
+        <div className="md:hidden lg:hidden">
           {/* Mobile responsive */}
-          
+            <MobileNavbar/>
         </div>
       </div>
     </div>
   )
 }
 
-export default Navbar
+export default Navbar;
+
+
+const MobileNavbar = () => {
+  return (
+    <Sheet>
+    <SheetTrigger asChild>
+      <Button size={'icon'} className="rounded-full bg-gray-200 text-black hover:bg-gray-200" variant="outline">
+        <Menu/>
+      </Button>
+    </SheetTrigger>
+    <SheetContent>
+      <SheetHeader>
+        <SheetTitle>Edit profile</SheetTitle>
+        <SheetDescription>
+          Make changes to your profile here. Click save when you're done.
+        </SheetDescription>
+      </SheetHeader>
+      <div className="grid gap-4 py-4">
+        <div className="grid grid-cols-4 items-center gap-4">
+          <Label htmlFor="name" className="text-right">
+            Name
+          </Label>
+          <Input id="name" value="Pedro Duarte" className="col-span-3" />
+        </div>
+        <div className="grid grid-cols-4 items-center gap-4">
+          <Label htmlFor="username" className="text-right">
+            Username
+          </Label>
+          <Input id="username" value="@peduarte" className="col-span-3" />
+        </div>
+      </div>
+      <SheetFooter>
+        <SheetClose asChild>
+          <Button type="submit">Save changes</Button>
+        </SheetClose>
+      </SheetFooter>
+    </SheetContent>
+  </Sheet>
+  )
+}
