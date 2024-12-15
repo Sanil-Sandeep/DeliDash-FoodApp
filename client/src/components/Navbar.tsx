@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom"
-import { Menubar, MenubarContent, MenubarMenu, MenubarTrigger } from "./ui/menubar";
+import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarTrigger } from "./ui/menubar";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Button } from "./ui/button";
+import { Moon, Sun } from "lucide-react";
 
 const Navbar = () => {
   const admin = true;
@@ -23,14 +26,41 @@ const Navbar = () => {
                     Dashboard
                   </MenubarTrigger>
                   <MenubarContent>
-                    <Link to="/admin/restaurant">Restaurant</Link>
-                    <Link to="/admin/menu">Menu</Link>
-                    <Link to="/admin/orders">Order</Link>
+                    <Link to="/admin/restaurant">
+                      <MenubarItem>Restaurant</MenubarItem>
+                    </Link>
+                    <Link to="/admin/menu">
+                      <MenubarItem>Menu</MenubarItem>
+                    </Link>
+                    <Link to="/admin/orders">
+                      <MenubarItem>Orders</MenubarItem>
+                    </Link>
                   </MenubarContent>
                 </MenubarMenu>
               </Menubar>
             )
           }
+        </div>
+        <div>
+          <div>
+          <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="icon">
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem>
+          Light
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+          Dark
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+          </div>
         </div>
       </div>
     </div>
