@@ -1,8 +1,19 @@
 import { Plus } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import { useRef, useState } from "react"
+import React, { useRef, useState } from "react"
+import { Input } from "./ui/input";
 
 const Profile = () => {
+
+    const [profileData, setProfileData] = useState({
+        fullname:"",
+        email:"",
+        phone:"",
+        address:"",
+        city:"",
+        country:"",
+        profilePicture:"",
+    })
 
     const imageRef = useRef<HTMLInputElement | null>(null);
     const [selectedProfilePicture, setSelecterProfilePicture] = useState<string>("");
@@ -13,9 +24,19 @@ const Profile = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 const result = reader.result as string;
-                setSelecterProfilePicture(result)
-            }
+                setSelecterProfilePicture(result);
+                setProfileData((prevData) => ({
+                    ...prevData,
+                    profilePicture:result
+                }))
+            };
+            reader.readAsDataURL(file);
         }
+    }
+
+    const changeHandler =(e:React.ChangeEvent<HTMLInputElement>) => {
+        const {name, value} = e.target;
+        setProfileData({...profileData, [name]:value});
     }
     return (
         <form className="max-w-7xl mx-auto my-5">
@@ -29,6 +50,12 @@ const Profile = () => {
                             <Plus className="text-white w-8 h-8" />
                         </div>
                         </Avatar>
+                        <Input
+                            type="text"
+                            name={profileData.fullname}
+                            onChange={changeHandler}
+                            className="font-bold text-2xl outline-none border-none focus-visible:ring-transparent"
+                        />
                 </div>
             </div>
         </form>
