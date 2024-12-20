@@ -5,6 +5,9 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { X } from "lucide-react";
+import { Card } from "./ui/card";
+import { AspectRatio } from "./ui/aspect-ratio";
+import HeroImage from "@/assets/hero_pizza.png"
 
 const SearchPage = () => {
     const params = useParams();
@@ -27,8 +30,8 @@ const SearchPage = () => {
                     {/* Search Items display here */}
                     <div>
                         <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-2 my-3">
-                            <h1>(2) Search result found</h1>
-                            <div>
+                            <h1 className="font-medium text-lg">(2) Search result found</h1>
+                            <div className="flex flex-wrap gap-2 md-4 md:mb-0">
                                 {
                                     ["Biriyani", "Rice", "Hoppers"].map((selectedFilter: string, idx: number) => (
                                         <div key={idx} className="relative inline-flex items-center max-w-full">
@@ -41,6 +44,16 @@ const SearchPage = () => {
                                     ))
                                 }
                             </div>
+                        </div>
+                        {/* Resturent Cards */}
+                        <div className="grid md:grid-cols-3 gap-4">
+                            <Card className="bg-white dark:bg-gray-800 shadow-xl rounded-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                                <div className="relative">
+                                    <AspectRatio ratio={16/6}>
+                                        <img src={HeroImage} className="w-full h-full object-cover"/>
+                                    </AspectRatio>
+                                </div>
+                            </Card>
                         </div>
                     </div>
                 </div>
