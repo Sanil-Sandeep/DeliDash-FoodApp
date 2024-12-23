@@ -1,6 +1,6 @@
-import Image from "@/assets/hero_pizza.png"
 import { Badge } from "./ui/badge"
 import { Timer } from "lucide-react"
+import AvailableMenu from "./AvailableMenu"
 
 const RestaurantDetail = () => {
     return (
@@ -14,7 +14,7 @@ const RestaurantDetail = () => {
                         <h1 className="font-medium text-xl">Pizza Hut</h1>
                         <div className="flex gap-2 my-2">
                             {
-                                ["Spicy Fish Pizza", "Veggie Masala Pizza"].map((cuisine:string, idx:number) => (
+                                ["Pizza", "Melts"].map((cuisine:string, idx:number) => (
                                     <Badge key={idx}>{cuisine}</Badge>
                                 ))
                             }
@@ -31,7 +31,7 @@ const RestaurantDetail = () => {
                         </div>
                     </div>
                 </div>
-
+                    <AvailableMenu/>
             </div>
         </div>
     )
