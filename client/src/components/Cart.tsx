@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "./ui/table"
 import { useState } from "react"
+import CheckoutConfirmPage from "./CheckoutConfirmPage"
 
 const Cart = () => {
     const [open, setOpen] = useState<boolean>(false);
