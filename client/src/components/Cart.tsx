@@ -2,8 +2,10 @@ import { Minus, Plus } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from "./ui/table"
+import { useState } from "react"
 
 const Cart = () => {
+    const [open, setOpen] = useState<boolean>(false);
   return (
     <div className="flex flex-col max-w-7xl mx-auto my-10">
         <div className="flex justify-end">
@@ -50,6 +52,10 @@ const Cart = () => {
                 </TableRow>
             </TableFooter>
         </Table>
+        <div className="flex justify-end my-5">
+            <Button onClick={() => setOpen(true)} className="bg-orange hover:bg-hoverOrange">Proceed To Checkout</Button>
+        </div>
+        <CheckoutConfirmPage open={open} setOpen={setOpen}/>
     </div>
   )
 }
