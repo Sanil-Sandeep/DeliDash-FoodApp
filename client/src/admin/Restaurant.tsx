@@ -2,9 +2,19 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Loader2 } from "lucide-react";
+import { useState } from "react";
 
 const Restaurant = () => {
+  const [input, setInput] = useState({
+    restaurantName:"",
+    city:"",
+    country:"",
+    deliveryTime:0,
+    cuisines:[],
+    imageFile:undefined
+  })
   const loading = false;
+  const restaurantx = false;
   return (
     <div className="max-w-6xl mx-auto my-10">
       <div>
@@ -62,7 +72,7 @@ const Restaurant = () => {
                 />
               </div>
             </div>
-            <div>
+            <div className="my-5 w-fit">
               {
                 loading ? (
                   <Button disabled className="bg-orange hover:bg-hoverOrange">
@@ -70,7 +80,9 @@ const Restaurant = () => {
                     Add Your Restaurant
                   </Button>
                 ) : (
-                  <Button className="bg-orange hover:bg-hoverOrange">Add Your Restaurant</Button>
+                  <Button className="bg-orange hover:bg-hoverOrange">
+                    { restaurantx ? 'Update Your Restaurant' : 'Add Your Restaurant'}
+                  </Button>
                 )
               }
             </div>
