@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Plus } from "lucide-react";
 import { useState } from "react"
 
@@ -24,6 +26,40 @@ const AddMenu = () => {
                         Create a menu that will make your restaurant stand out.
                     </DialogDescription>
                 </DialogHeader>
+                <form>
+                    <div>
+                        <Label>Name</Label>
+                        <Input
+                            type="text"
+                            name="name"
+                            placeholder="Enter menu name"
+                        />
+                    </div>
+                    <div>
+                        <Label>Description</Label>
+                        <Input
+                            type="text"
+                            name="name"
+                            placeholder="Enter menu description"
+                        />
+                    </div>
+                    <div>
+                        <Label>Price in (Rupees)</Label>
+                        <Input
+                            type="text"
+                            name="price"
+                            placeholder="Enter menu price"
+                        />
+                    </div>
+                    <div>
+                        <Label>Upload Menu Image</Label>
+                        <Input
+                            type="file"
+                            name="image"
+                            placeholder="Enter menu image"
+                        />
+                    </div>
+                </form>
             </DialogContent>
         </Dialog>
     </div>
