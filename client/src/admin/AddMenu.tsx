@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { useState } from "react"
 
 const AddMenu = () => {
     const [open, setOpen] = useState<boolean>(false);
+    const loading = false;
   return (
     <div className="max-w-6xl mx-auto my-10">
         <div className="flex justify-between">
             <h1 className="font-bold md:font-extrabold text-lg md:text-2xl">Available Menus</h1>
-        </div>
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger>
                 <Button className="bg-orange hover:bg-hoverOrange">
@@ -26,7 +26,7 @@ const AddMenu = () => {
                         Create a menu that will make your restaurant stand out.
                     </DialogDescription>
                 </DialogHeader>
-                <form>
+                <form className="space-y-4">
                     <div>
                         <Label>Name</Label>
                         <Input
@@ -59,9 +59,22 @@ const AddMenu = () => {
                             placeholder="Enter menu image"
                         />
                     </div>
+                    <DialogFooter className="mt-5">
+                        {
+                            loading ? (
+                                <Button disabled className="bg-orange hover:bg-hoverOrange">
+                                    <Loader2 className="mr-2 w-4 h-4 animate-spin"/>
+                                    Please Wait
+                                </Button>
+                            ) : (
+                                <Button className="bg-orange hover:bg-hoverOrange">Submit</Button>
+                            )
+                        }
+                    </DialogFooter>
                 </form>
             </DialogContent>
         </Dialog>
+        </div>
     </div>
   )
 }
