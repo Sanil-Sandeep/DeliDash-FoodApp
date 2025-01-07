@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Loader2, Plus } from "lucide-react";
 import { FormEvent, useState } from "react"
 import EditMenu from "./EditMenu";
+import { MenuFormSchema, menuSchema } from "@/schema/menuSchema";
 
 const menus = [
     {
@@ -24,15 +25,17 @@ const menus = [
 
 const AddMenu = () => {
 
-    const [input, setInput] = useState<any>({
+    const [input, setInput] = useState<MenuFormSchema>({
         name:"",
         description:"",
         price: 0,
         image: undefined
-    })
+    });
 
     const [open, setOpen] = useState<boolean>(false);
+    const [editOpen, setEditOpen] = useState<boolean>(false);
     const [selectedMenu, setSelectedMenu] = useState<any>();
+    const [error, setError] = useState<Partial<MenuFormSchema>>({});
     const loading = false;
 
     const changeEventHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,8 +45,16 @@ const AddMenu = () => {
 
     const submitHandler = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(input);
-    }
+        const result = menuSchema.safeParse(input);
+        if(!result.success) {
+            const fieldErrors = result.error.formErrors.fieldErrors;
+            setError(fieldErrors as Partial<MenuFormSchema>);
+            return;
+        }
+
+        // api implementation
+    };
+
     return (
         <div className="max-w-6xl mx-auto my-10">
             <div className="flex justify-between">
@@ -72,6 +83,7 @@ const AddMenu = () => {
                                     onChange={changeEventHandler}
                                     placeholder="Enter menu name"
                                 />
+                                {error && <span className="text-xs font-medium text-red-600">{error.name}</span>}
                             </div>
                             <div>
                                 <Label>Description</Label>
@@ -82,6 +94,7 @@ const AddMenu = () => {
                                     onChange={changeEventHandler}
                                     placeholder="Enter menu description"
                                 />
+                                {error && <span className="text-xs font-medium text-red-600">{error.description}</span>}
                             </div>
                             <div>
                                 <Label>Price in (Rupees)</Label>
@@ -92,6 +105,7 @@ const AddMenu = () => {
                                     onChange={changeEventHandler}
                                     placeholder="Enter menu price"
                                 />
+                                {error && <span className="text-xs font-medium text-red-600">{error.price}</span>}
                             </div>
                             <div>
                                 <Label>Upload Menu Image</Label>
@@ -101,6 +115,7 @@ const AddMenu = () => {
                                     onChange={(e) => setInput({...input, image:e.target.files?.[0] || undefined})}
                                     placeholder="Enter menu image"
                                 />
+                                {error && <span className="text-xs font-medium text-red-600">{error.image?.name || "Image is required"}</span>}
                             </div>
                             <DialogFooter className="mt-5">
                                 {
@@ -133,12 +148,20 @@ const AddMenu = () => {
                                     Price: <span className="text-[#D19254]">{menu.price}</span>
                                 </h2>
                             </div>
-                            <Button onClick={() => setSelectedMenu(menu)} size={'sm'} className="bg-orange hover:bg-hoverOrange mt-2">Edit</Button>
+                            <Button 
+                                onClick={() => {
+                                    setSelectedMenu(menu);
+                                    setEditOpen(true);
+                                }} 
+                                size={'sm'} 
+                                className="bg-orange hover:bg-hoverOrange mt-2">
+                                    Edit
+                            </Button>
                         </div>
                     </div>
                 ))
             }
-            <EditMenu selectedMenu={selectedMenu} />
+            <EditMenu selectedMenu={selectedMenu} editOpen={editOpen} setEditOpen={setEditOpen}/>
         </div>
     )
 }
