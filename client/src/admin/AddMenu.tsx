@@ -32,6 +32,7 @@ const AddMenu = () => {
     })
 
     const [open, setOpen] = useState<boolean>(false);
+    const [editOpen, setEditOpen] = useState<boolean>(false);
     const [selectedMenu, setSelectedMenu] = useState<any>();
     const loading = false;
 
@@ -133,12 +134,20 @@ const AddMenu = () => {
                                     Price: <span className="text-[#D19254]">{menu.price}</span>
                                 </h2>
                             </div>
-                            <Button onClick={() => setSelectedMenu(menu)} size={'sm'} className="bg-orange hover:bg-hoverOrange mt-2">Edit</Button>
+                            <Button 
+                                onClick={() => {
+                                    setSelectedMenu(menu);
+                                    setEditOpen(true);
+                                }} 
+                                size={'sm'} 
+                                className="bg-orange hover:bg-hoverOrange mt-2">
+                                    Edit
+                            </Button>
                         </div>
                     </div>
                 ))
             }
-            <EditMenu selectedMenu={selectedMenu} />
+            <EditMenu selectedMenu={selectedMenu} editOpen={editOpen} setEditOpen={setEditOpen}/>
         </div>
     )
 }
