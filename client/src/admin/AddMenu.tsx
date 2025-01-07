@@ -29,7 +29,7 @@ const AddMenu = () => {
         description:"",
         price: 0,
         image: undefined
-    })
+    });
 
     const [open, setOpen] = useState<boolean>(false);
     const [editOpen, setEditOpen] = useState<boolean>(false);
