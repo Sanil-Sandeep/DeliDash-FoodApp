@@ -1,5 +1,10 @@
+import Image from "@/assets/hero_pizza.png";
+import { Separator } from "./separator";
+import { Link } from "react-router-dom";
+import { Button } from "./button";
+
 const Success = () => {
-    const orders = [1,2,3];
+    const orders = [1, 2, 3];
     if (orders.length == 0)
         return (
             <div className="flex items-center justify-center min-h-screen">
@@ -14,6 +19,30 @@ const Success = () => {
                         Order Status:{" "}
                         <span className="text-[#FF5A5A]">{"confirm".toUpperCase()}</span>
                     </h1>
+                </div>
+                <div className="mb-6">
+                    <h2 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">Order Summary</h2>
+                    {/* Your Orderd Item Display Here */}
+                    <div className="mb-4">
+                        <div className="flex justify-between items-center">
+                            <div className="flex items-center">
+                                <img src={Image} alt="" className="w-14 h-14 rounded-md object-cover" />
+                                <h3 className="ml-4 text-gray-800 dark:text-gray-200 font-medium">Pizza</h3>
+                            </div>
+                            <div className="text-right">
+                                <div className="text-gray-800 dark:text-gray-200 flex items-center">
+                                    <span className="text-lg font-medium">Rs</span>
+                                    <span className="text-lg font-medium ml-2">800</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <Separator className="my-4" />
+                    </div>
+                    
+                    <Link to="/cart">
+                        <Button className="bg-orange hover:bg-hoverOrange w-full py-3 rounded-md shadow-lg">Continue Shopping</Button>
+                    </Link>
                 </div>
             </div>
         </div>
